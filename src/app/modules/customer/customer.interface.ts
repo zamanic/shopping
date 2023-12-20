@@ -1,11 +1,13 @@
 import { Model } from 'mongoose';
 
 export type TFullName = {
+  _id: any;
   firstName: string;
   lastName: string;
 };
 
 export type TAddress = {
+  _id: any;
   street: string;
   city: string;
   country: string;
