@@ -1,8 +1,6 @@
 import { Request, Response } from 'express';
 import { UserServices } from './customer.service';
 import userValidationSchema from './customer.zod.validation';
-import { TUser } from './customer.interface';
-// import { z } from 'zod';
 
 const createUser = async (req: Request, res: Response) => {
   try {

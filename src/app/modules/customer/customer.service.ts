@@ -2,9 +2,7 @@ import { TUser } from './customer.interface';
 import { User } from './customer.model';
 
 //creating a Static Method:
-const createUserIntoDB = async (userData: TUser): Promise<TUser> => {
-  //const createUserIntoDB = async (userData: TUser): Promise<TUser> => {
-  //unlike instance method where isUserExists could be called from instance here you can do it using model
+const createUserIntoDB = async (userData: TUser) => {
   if (await User.isUserExists(userData.userId)) {
     throw new Error('User already exists');
   }
@@ -24,7 +22,7 @@ const createUserIntoDB = async (userData: TUser): Promise<TUser> => {
 // };
 
 //const getAllUsersFromDB = async () => {
-const getAllUsersFromDB = async (): Promise<TUser[]> => {
+const getAllUsersFromDB = async () => {
   const result = await User.find();
   return result;
 };

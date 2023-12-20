@@ -120,6 +120,9 @@ const userSchema = new Schema<TUser, UserModel>(
     toJSON: {
       virtuals: true,
     },
+    toObject: {
+      virtuals: true,
+    },
   },
 );
 
