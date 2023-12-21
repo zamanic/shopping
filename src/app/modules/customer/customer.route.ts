@@ -4,6 +4,7 @@ import { UserControllers } from './customer.controller';
 
 const router = express.Router();
 //will call controller func
+
 router.post('/create-user', UserControllers.createUser);
 router.get('/', UserControllers.getAllUsers);
 router.get('/:userId', UserControllers.getSingleUser);
