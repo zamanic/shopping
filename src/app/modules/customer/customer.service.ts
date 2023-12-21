@@ -28,7 +28,7 @@ const getAllUsersFromDB = async () => {
 };
 
 //const getSingleUserFromDB = async (userId: number) => {
-const getSingleUserFromDB = async (userId: number): Promise<TUser | null> => {
+const getSingleUserFromDB = async (userId: number) => {
   //you can use findOne:
   //const result = await User.findOne({ userId });
   const userW = await User.isUserExists(userId);
@@ -40,6 +40,9 @@ const getSingleUserFromDB = async (userId: number): Promise<TUser | null> => {
   const result = await User.findById(userW._id);
   // const resultObj = result?.toObject;
   // console.log(resultObj);
+  if (!result) {
+    throw new Error('User not found');
+  }
   return result;
 };
 //const deleteSingleUserFromDB = async (userId: number) => {
