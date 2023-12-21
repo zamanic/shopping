@@ -12,6 +12,7 @@ export type TAddress = {
 };
 
 export type TUser = {
+  _id?: string;
   userId: number;
   username: string;
   password: string;
@@ -26,7 +27,7 @@ export type TUser = {
   address: TAddress;
   isDeleted: boolean;
   orders?: string[];
-};
+} & Document;
 export interface UserModel extends Model<TUser> {
   isUserExists(userId: number): Promise<(TUser & Document) | null>;
 }

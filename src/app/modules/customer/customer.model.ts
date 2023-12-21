@@ -44,6 +44,7 @@ const userAddressSchema = new Schema<TAddress>({
     required: [true, 'Country is required'],
   },
 });
+
 const userSchema = new Schema<TUser, UserModel>(
   {
     userId: {
@@ -114,7 +115,7 @@ const userSchema = new Schema<TUser, UserModel>(
       select: false,
       required: false,
     },
-    // orders: [{ type: String, ref: 'Order' }],
+    //orders: [{ type: Schema.Types.ObjectId, ref: 'Order', select: false }],
   },
   {
     toJSON: {

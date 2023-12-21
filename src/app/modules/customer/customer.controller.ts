@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 import { UserServices } from './customer.service';
 import userValidationSchema from './customer.zod.validation';
+import { TUser } from './customer.interface';
 
 const createUser = async (req: Request, res: Response) => {
   try {
@@ -11,7 +12,7 @@ const createUser = async (req: Request, res: Response) => {
     //data validation using Zod
     const zodParsedData =
       userValidationSchema.userValidationSchema.parse(userData);
-    const result = await UserServices.createUserIntoDB(zodParsedData);
+    const result = await UserServices.createUserIntoDB(zodParsedData as TUser);
     //const { password, ...userWithoutPassword } = result;
     //console.log(userWithoutPassword);
 
@@ -26,6 +27,7 @@ const createUser = async (req: Request, res: Response) => {
     delete userAny.orders;
     delete userAny.fullName._id;
     delete userAny.address._id;
+    delete userAny.id;
 
     // Exclude the password field from the response data
     // delete userWithoutPassword.password;
@@ -122,6 +124,7 @@ const getSingleUser = async (req: Request, res: Response) => {
     delete userAny.orders;
     delete userAny.fullName._id;
     delete userAny.address._id;
+    delete userAny.id;
 
     //delete userWithoutPassword._id;
     res.status(200).json({
@@ -195,6 +198,7 @@ const updateUser = async (req: Request, res: Response) => {
     delete userAny.orders;
     delete userAny.fullName._id;
     delete userAny.address._id;
+    delete userAny.id;
 
     res.status(200).json({
       status: 'success',

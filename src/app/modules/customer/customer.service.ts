@@ -27,10 +27,7 @@ const getAllUsersFromDB = async () => {
   return result;
 };
 
-//const getSingleUserFromDB = async (userId: number) => {
 const getSingleUserFromDB = async (userId: number) => {
-  //you can use findOne:
-  //const result = await User.findOne({ userId });
   const userW = await User.isUserExists(userId);
   if (!userW) {
     throw new Error('User not found');
@@ -38,8 +35,7 @@ const getSingleUserFromDB = async (userId: number) => {
   //or you can use aggregate:
   //const result = await User.aggregate([{ $match: { userId: userId } }]);
   const result = await User.findById(userW._id);
-  // const resultObj = result?.toObject;
-  // console.log(resultObj);
+
   if (!result) {
     throw new Error('User not found');
   }

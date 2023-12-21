@@ -68,6 +68,10 @@ const addressValSchema = z.object({
 });
 
 const userValSchema = z.object({
+  _id: z
+    .string()
+    .regex(/^[0-9a-fA-F]{24}$/, 'Invalid ObjectId format')
+    .optional(),
   userId: z.number().positive().optional(),
   username: z.string().optional(),
   password: z.string().optional(),
