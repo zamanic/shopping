@@ -63,18 +63,20 @@ const getAllUsers = async (req: Request, res: Response) => {
     // Map over the array and modify each user
     const usersWithoutSensitiveData = result.map((userWithout) => {
       const userObj = userWithout.toObject();
-      delete userObj.userId;
-      delete userObj.password;
-      delete userObj.isDeleted;
-      delete userObj.isActive;
-      delete userObj.hobbies;
-      delete userObj.gender;
-      delete userObj._id;
-      delete userObj.__v;
-      delete userObj.orders;
-      delete userObj.fullName._id;
-      delete userObj.address._id;
-      return userObj;
+      const userAny: any = userObj;
+      delete userAny.userId;
+      delete userAny.password;
+      delete userAny.isDeleted;
+      delete userAny.isActive;
+      delete userAny.hobbies;
+      delete userAny.gender;
+      delete userAny._id;
+      delete userAny.__v;
+      delete userAny.orders;
+      delete userAny.fullName._id;
+      delete userAny.address._id;
+      delete userAny.id;
+      return userAny;
     });
 
     res.status(200).json({
