@@ -13,7 +13,8 @@ const addProductToOrder = async (req: Request, res: Response) => {
 
     await orderValidationSchema.orderValidationSchema.parse(orderData);
     const userE = await User.isUserExists(userIdNumber);
-    if (!userE) {
+
+    if (!userE || !userE._id) {
       throw new Error('User not found');
     }
     await orderValidationSchema.objectIdSchema.parse(userE._id.toString());
