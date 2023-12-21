@@ -60,10 +60,7 @@ const deleteSingleUserFromDB = async (
 };
 
 //const updateUserInDB = async (userId: number, updatedUserData: TUser) => {
-const updateUserInDB = async (
-  userId: number,
-  updatedUserData: TUser,
-): Promise<TUser | null> => {
+const updateUserInDB = async (userId: number, updatedUserData: TUser) => {
   // Check if the user exists
   const existingUser = await User.isUserExists(userId);
   if (!existingUser) {
@@ -73,6 +70,9 @@ const updateUserInDB = async (
     new: true,
     runValidators: true,
   });
+  if (!result) {
+    throw new Error('User not found');
+  }
 
   return result;
 };

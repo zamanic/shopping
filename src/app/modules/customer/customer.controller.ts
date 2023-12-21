@@ -185,16 +185,16 @@ const updateUser = async (req: Request, res: Response) => {
       userIdNumber,
       updatedUserData,
     );
-    // Omit the password field from the response
     const userWithoutPassword = result.toObject();
-    delete userWithoutPassword.password;
-    delete userWithoutPassword.isDeleted;
-    delete userWithoutPassword.gender;
-    delete userWithoutPassword._id;
-    delete userWithoutPassword.__v;
-    delete userWithoutPassword.orders;
-    delete userWithoutPassword.fullName._id;
-    delete userWithoutPassword.address._id;
+    const userAny: any = userWithoutPassword;
+    delete userAny.password;
+    delete userAny.isDeleted;
+    delete userAny.gender;
+    delete userAny._id;
+    delete userAny.__v;
+    delete userAny.orders;
+    delete userAny.fullName._id;
+    delete userAny.address._id;
 
     res.status(200).json({
       status: 'success',
