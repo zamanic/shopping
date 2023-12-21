@@ -127,10 +127,10 @@ const userSchema = new Schema<TUser, UserModel>(
 );
 
 //virtual
-userSchema.virtual('nameInFullForm').get(function () {
-  //return this.fullName.firstName + this.fullName.lastName;
-  return `${this.fullName.firstName} ${this.fullName.lastName}`;
-});
+// userSchema.virtual('nameInFullForm').get(function () {
+//   //return this.fullName.firstName + this.fullName.lastName;
+//   return `${this.fullName.firstName} ${this.fullName.lastName}`;
+// });
 
 // userSchema.pre('save', async function (next) {
 //   //console.log(this, 'pre hook: we will save data');
@@ -165,7 +165,7 @@ userSchema.pre('save', async function (next) {
 //customer.model.ts: post save middleware / hook
 userSchema.post('save', function (doc, next) {
   //console.log(this, 'post hook: we saved our data');
-  //doc.password = '';
+  doc.password = '';
   next();
 });
 

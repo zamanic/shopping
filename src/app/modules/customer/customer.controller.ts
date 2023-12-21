@@ -17,16 +17,25 @@ const createUser = async (req: Request, res: Response) => {
 
     // Convert the Mongoose document to a plain JavaScript object
     const userWithoutPassword = result.toObject();
+    const userAny: any = userWithoutPassword;
+    delete userAny.password;
+    delete userAny.isDeleted;
+    delete userAny.gender;
+    delete userAny._id;
+    delete userAny.__v;
+    delete userAny.orders;
+    delete userAny.fullName._id;
+    delete userAny.address._id;
 
     // Exclude the password field from the response data
-    delete userWithoutPassword.password;
-    delete userWithoutPassword.isDeleted;
-    delete userWithoutPassword.gender;
-    delete userWithoutPassword._id;
-    delete userWithoutPassword.__v;
-    delete userWithoutPassword.orders;
-    delete userWithoutPassword.fullName._id;
-    delete userWithoutPassword.address._id;
+    // delete userWithoutPassword.password;
+    // delete userWithoutPassword.isDeleted;
+    // delete userWithoutPassword.gender;
+    // delete userWithoutPassword._id;
+    // delete userWithoutPassword.__v;
+    // delete userWithoutPassword.orders;
+    // delete userWithoutPassword.fullName._id;
+    // delete userWithoutPassword.address._id;
 
     // Send the response with the modified data
     res.status(201).json({
