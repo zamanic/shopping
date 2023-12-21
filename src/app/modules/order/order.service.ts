@@ -15,7 +15,7 @@ const addOrderToUser = async (userId: number, orderData: TOrder) => {
   const newOrder = new Order(orderData);
   await newOrder.save();
   const userOrder = await User.findOne({ userId }).select('+orders');
-  if (!userOrder) {
+  if (!userOrder || !userOrder.orders) {
     throw new Error('User not found');
   }
   userOrder.orders.push(newOrder._id.toString());

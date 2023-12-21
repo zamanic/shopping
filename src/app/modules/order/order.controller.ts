@@ -49,10 +49,11 @@ const getAllOrders = async (req: Request, res: Response) => {
 
     const usersWithoutSensitiveData = result.map((userWithout) => {
       const userObj = userWithout.toObject();
-      delete userObj._id;
-      delete userObj.userObjId;
-      delete userObj.__v;
-      return userObj;
+      const userAny: any = userObj;
+      delete userAny._id;
+      delete userAny.userObjId;
+      delete userAny.__v;
+      return userAny;
     });
 
     res.status(200).json({
